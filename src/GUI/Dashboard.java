@@ -1,0 +1,875 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GUI;
+
+import GUI.CustomersFrameForm;
+import GUI.AvailableGuitarsFramForm;
+import GUI.AddGuitarFrameForm;
+import GUI.AddEmployeeFrameForm;
+import GUI.AddCustomerFrameForm;
+import java.awt.Color;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import loveguitars.assignemnt.Build;
+import loveguitars.assignemnt.Customer;
+import loveguitars.assignemnt.Employee;
+import loveguitars.assignemnt.Guitar;
+import loveguitars.assignemnt.GuitarType;
+import loveguitars.assignemnt.RentalRecord;
+import loveguitars.assignemnt.Shop;
+import loveguitars.assignemnt.Wood;
+
+
+/**
+ *
+ * @author Tatiana
+ */
+public class Dashboard extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Dashboard
+     */
+    // set static shop and staff for test purpose
+    public static Shop shop= new Shop("Main", "20 Manukau road", "0911111");
+    public static Employee staff= new Employee("Staff");
+   
+    // set date format
+    DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+    Date date=new Date();
+    Calendar cal=Calendar.getInstance();
+    
+    Color DefaultColor, ClickedColor;
+
+    public Dashboard() throws ParseException {
+        initComponents();
+        
+        // set colour of the Dashboard
+        DefaultColor=new Color(34,41,48);
+        ClickedColor=new Color(78,177,186);
+        menuAdd.setBackground(DefaultColor);
+       changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+      
+        //creating test objects 
+        
+        Employee j=new Employee(111, "JJonston", "Password01", "staff", "101", "Jenny Johnston", dateFormat.parse("15/04/1980"), "20 Manukau road", "09245612");
+        Employee m=new Employee(122, "MMiles", "Miles03", "staff", "102", "Michael Miles", dateFormat.parse("20/02/1984"), "5 St.George street", "02123123");
+        staff.addEmployee(m, shop);staff.addEmployee(j, shop);
+        Customer s=new Customer("RT123", 35, dateFormat.parse("15/04/2023"), 'M', "1001", "John Smith", dateFormat.parse("30/12/1985"), "8 Hill road", "0999999");
+        Customer w=new Customer("WER456", 36, dateFormat.parse("31/12/2023"), 'F', "1002", "Wendy Colins", dateFormat.parse("15/07/1985"), "1 Alexandra place", "0833333");
+        Customer g=new Customer("ASD345", 21, dateFormat.parse("12/04/2024"), 'M', "1003", "Garry Cromwell", dateFormat.parse("1/04/2000"), "5/67 Qeen street", "02456456");
+        staff.addCustomer(g, shop); staff.addCustomer(w, shop); staff.addCustomer(s, shop);
+        Guitar g1=new Guitar("101010", 2020, 15.50, "Black", 96.50, 36.80, 48.50, "516ce", Build.FENDER, GuitarType.ELECTRIC, Wood.MAPLE, Wood.MAPLE);
+        staff.addGuitar(g1, shop);
+       
+        Guitar g2=new Guitar("101020", 2021, 17.50, "Blue", 104.10, 38, 51.3, "510e", Build.GIBSON, GuitarType.ACOUSTIC, Wood.BRAZILIAN_ROSEWOOD, Wood.BRAZILIAN_ROSEWOOD);
+        staff.addGuitar(g2, shop);
+        staff.addGuitar(new Guitar("101030", 2019, 14.50, "Brown", 82, 33.6, 47.50, "514ce-N", Build.COLLINGS, GuitarType.ACOUSTIC, Wood.CEDAR, Wood.CEDAR),shop);
+        staff.addGuitar(new Guitar("101040", 2021, 20, "Black", 103.0, 38.1, 50.50, "517e-N", Build.RYAN, GuitarType.ELECTRIC, Wood.ALDER, Wood.ALDER),shop);
+        staff.addGuitar(new Guitar("101050", 2019, 13.50, "Red", 98, 37.2, 47.3, "510ce", Build.OLSON, GuitarType.ACOUSTIC, Wood.INDIAN_ROSEWOOD, Wood.INDIAN_ROSEWOOD),shop);
+        staff.addGuitar(new Guitar("101060", 2021, 21.50, "Black", 82, 36.5, 41.50, "512ce", Build.COLLINGS, GuitarType.ACOUSTIC, Wood.MAHOGANY, Wood.MAHOGANY),shop);
+
+        RentalRecord r1=new RentalRecord(g1, s, dateFormat.parse("04/09/2021"), dateFormat.parse("03/09/2021"), m, dateFormat.parse("04/09/2021"));
+        staff.addRentalRecord(r1, shop);
+        RentalRecord r2=new RentalRecord(g2, w, dateFormat.parse("30/08/2021"), dateFormat.parse("10/08/2021"), m, dateFormat.parse("01/09/2021"));
+        staff.addRentalRecord(r2, shop);
+        RentalRecord r3=new RentalRecord(g1, w, dateFormat.parse("02/09/2021"), dateFormat.parse("30/08/2021"), m, dateFormat.parse("03/09/2021"));
+        staff.addRentalRecord(r3, shop);
+     
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel13 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        exitButton = new javax.swing.JLabel();
+        topMenu = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        menuAdd = new javax.swing.JPanel();
+        textfieldadd = new javax.swing.JLabel();
+        changeG = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        availableG = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        rentG = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        addE = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        returnG = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        searchE = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        addC = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        searchC = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        customersM = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(78, 177, 186));
+
+        jPanel2.setBackground(new java.awt.Color(34, 41, 48));
+        jPanel2.setPreferredSize(new java.awt.Dimension(950, 100));
+        jPanel2.setRequestFocusEnabled(false);
+
+        exitButton.setForeground(new java.awt.Color(204, 204, 204));
+        exitButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\close_window_50px.png")); // NOI18N
+        exitButton.setText("Exit");
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
+            }
+        });
+
+        topMenu.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        topMenu.setForeground(new java.awt.Color(233, 233, 233));
+        topMenu.setText("Menu");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(279, 279, 279)
+                .addComponent(topMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 11, Short.MAX_VALUE)
+                        .addComponent(exitButton))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel3.setBackground(new java.awt.Color(34, 41, 48));
+        jPanel3.setPreferredSize(new java.awt.Dimension(302, 646));
+
+        menuAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuAddMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuAddMousePressed(evt);
+            }
+        });
+
+        textfieldadd.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        textfieldadd.setForeground(new java.awt.Color(233, 233, 233));
+        textfieldadd.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\guitar_26px.png")); // NOI18N
+        textfieldadd.setText("Add Guitar");
+
+        javax.swing.GroupLayout menuAddLayout = new javax.swing.GroupLayout(menuAdd);
+        menuAdd.setLayout(menuAddLayout);
+        menuAddLayout.setHorizontalGroup(
+            menuAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(textfieldadd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        menuAddLayout.setVerticalGroup(
+            menuAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(textfieldadd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        changeG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changeGMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                changeGMousePressed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\guitar_26px.png")); // NOI18N
+        jLabel1.setText("Search/ Update Guitar");
+
+        javax.swing.GroupLayout changeGLayout = new javax.swing.GroupLayout(changeG);
+        changeG.setLayout(changeGLayout);
+        changeGLayout.setHorizontalGroup(
+            changeGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        changeGLayout.setVerticalGroup(
+            changeGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        availableG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                availableGMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                availableGMousePressed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\guitar_26px.png")); // NOI18N
+        jLabel5.setText("Available Guitars");
+
+        javax.swing.GroupLayout availableGLayout = new javax.swing.GroupLayout(availableG);
+        availableG.setLayout(availableGLayout);
+        availableGLayout.setHorizontalGroup(
+            availableGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(availableGLayout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        availableGLayout.setVerticalGroup(
+            availableGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        rentG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rentGMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rentGMousePressed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\guitar_26px.png")); // NOI18N
+        jLabel10.setText("Rent / Return Guitar");
+
+        javax.swing.GroupLayout rentGLayout = new javax.swing.GroupLayout(rentG);
+        rentG.setLayout(rentGLayout);
+        rentGLayout.setHorizontalGroup(
+            rentGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rentGLayout.createSequentialGroup()
+                .addComponent(jLabel10)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        rentGLayout.setVerticalGroup(
+            rentGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        addE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addEMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addEMousePressed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\management_30px.png")); // NOI18N
+        jLabel7.setText("Add Employee");
+
+        javax.swing.GroupLayout addELayout = new javax.swing.GroupLayout(addE);
+        addE.setLayout(addELayout);
+        addELayout.setHorizontalGroup(
+            addELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addELayout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        addELayout.setVerticalGroup(
+            addELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        returnG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                returnGMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                returnGMousePressed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\guitar_26px.png")); // NOI18N
+        jLabel11.setText("Rental records");
+
+        javax.swing.GroupLayout returnGLayout = new javax.swing.GroupLayout(returnG);
+        returnG.setLayout(returnGLayout);
+        returnGLayout.setHorizontalGroup(
+            returnGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(returnGLayout.createSequentialGroup()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 28, Short.MAX_VALUE))
+        );
+        returnGLayout.setVerticalGroup(
+            returnGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        searchE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchEMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                searchEMousePressed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\management_30px.png")); // NOI18N
+        jLabel9.setText("Search Employee");
+
+        javax.swing.GroupLayout searchELayout = new javax.swing.GroupLayout(searchE);
+        searchE.setLayout(searchELayout);
+        searchELayout.setHorizontalGroup(
+            searchELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchELayout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        searchELayout.setVerticalGroup(
+            searchELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        addC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addCMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addCMousePressed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\lawyer_32px.png")); // NOI18N
+        jLabel8.setText("Add Customer");
+
+        javax.swing.GroupLayout addCLayout = new javax.swing.GroupLayout(addC);
+        addC.setLayout(addCLayout);
+        addCLayout.setHorizontalGroup(
+            addCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addCLayout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        addCLayout.setVerticalGroup(
+            addCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        searchC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchCMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                searchCMousePressed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\lawyer_32px.png")); // NOI18N
+        jLabel6.setText("Search Customer");
+
+        javax.swing.GroupLayout searchCLayout = new javax.swing.GroupLayout(searchC);
+        searchC.setLayout(searchCLayout);
+        searchCLayout.setHorizontalGroup(
+            searchCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCLayout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        searchCLayout.setVerticalGroup(
+            searchCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        customersM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customersMMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                customersMMousePressed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(233, 233, 233));
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\tatja\\OneDrive\\Desktop\\Object Oriented programming\\excersises\\LoveGuitars Assignemnt\\icons\\lawyer_32px.png")); // NOI18N
+        jLabel12.setText("Customers' rentals");
+
+        javax.swing.GroupLayout customersMLayout = new javax.swing.GroupLayout(customersM);
+        customersM.setLayout(customersMLayout);
+        customersMLayout.setHorizontalGroup(
+            customersMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customersMLayout.createSequentialGroup()
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        customersMLayout.setVerticalGroup(
+            customersMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(78, 177, 186));
+        jLabel4.setText("Rental Record management");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(78, 177, 186));
+        jLabel13.setText("Stock management");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(78, 177, 186));
+        jLabel14.setText("Employee/ Customer management");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(changeG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(menuAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(availableG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(customersM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(addC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(searchE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(addE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(returnG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rentG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(menuAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(changeG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(availableG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customersM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(rentG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(returnG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jDesktopPane1.setBackground(new java.awt.Color(233, 233, 233));
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 666, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 646, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void menuAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAddMouseClicked
+        // seting up which frame form is visble while click on the menu buttons
+       
+        AddGuitarFrameForm menu=new AddGuitarFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu).setVisible(true);
+   
+    }//GEN-LAST:event_menuAddMouseClicked
+
+    private void changeGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeGMouseClicked
+        // TODO add your handling code here:
+       SearchGuitarFrameForm1 menu1=new SearchGuitarFrameForm1();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu1).setVisible(true); 
+    }//GEN-LAST:event_changeGMouseClicked
+
+    private void availableGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_availableGMouseClicked
+        // TODO add your handling code here:
+        AvailableGuitarsFramForm menu2=new AvailableGuitarsFramForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu2).setVisible(true); 
+    }//GEN-LAST:event_availableGMouseClicked
+
+    private void rentGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentGMouseClicked
+        // TODO add your handling code here:
+       RentGuitarFrameForm menu3=new RentGuitarFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu3).setVisible(true);  
+    }//GEN-LAST:event_rentGMouseClicked
+
+    private void returnGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_returnGMouseClicked
+        // TODO add your handling code here:
+          RentalRecordsFrameForm menu4=new RentalRecordsFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu4).setVisible(true);  
+    }//GEN-LAST:event_returnGMouseClicked
+
+    private void addEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEMouseClicked
+        // TODO add your handling code here:
+        AddEmployeeFrameForm menu5=new AddEmployeeFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu5).setVisible(true);  
+    }//GEN-LAST:event_addEMouseClicked
+
+    private void searchEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchEMouseClicked
+        // TODO add your handling code here:
+      SearchEmployeeFrameForm menu6=new SearchEmployeeFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu6).setVisible(true); 
+    }//GEN-LAST:event_searchEMouseClicked
+
+    private void addCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCMouseClicked
+        // TODO add your handling code here:
+        AddCustomerFrameForm menu7=new AddCustomerFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu7).setVisible(true); 
+    }//GEN-LAST:event_addCMouseClicked
+
+    private void searchCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchCMouseClicked
+        // TODO add your handling code here:
+       SearchCustomerFrameForm menu7=new SearchCustomerFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu7).setVisible(true); 
+    }//GEN-LAST:event_searchCMouseClicked
+
+    private void customersMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customersMMouseClicked
+        // TODO add your handling code here:
+        CustomersFrameForm menu8=new CustomersFrameForm();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(menu8).setVisible(true); 
+    }//GEN-LAST:event_customersMMouseClicked
+
+    private void menuAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAddMousePressed
+        // change colours of selected menu and change name of the menu on top
+        menuAdd.setBackground(ClickedColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Add Guitar");
+    }//GEN-LAST:event_menuAddMousePressed
+
+    private void changeGMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeGMousePressed
+        // TODO add your handling code here:
+        
+        menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(ClickedColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Search/ Update Guitar");
+    }//GEN-LAST:event_changeGMousePressed
+
+    private void availableGMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_availableGMousePressed
+        // TODO add your handling code here:
+         menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(ClickedColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Available Guitars");
+    }//GEN-LAST:event_availableGMousePressed
+
+    private void rentGMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentGMousePressed
+        // TODO add your handling code here:
+        menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(ClickedColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Rent/ Return Guitar");
+    }//GEN-LAST:event_rentGMousePressed
+
+    private void returnGMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_returnGMousePressed
+        // TODO add your handling code here:
+         menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(ClickedColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Rental Records");
+    }//GEN-LAST:event_returnGMousePressed
+
+    private void addEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEMousePressed
+        // TODO add your handling code here:
+         menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(ClickedColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Add Employee");
+    }//GEN-LAST:event_addEMousePressed
+
+    private void searchEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchEMousePressed
+        // TODO add your handling code here:
+        menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(ClickedColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Search/ Update Employee");
+    }//GEN-LAST:event_searchEMousePressed
+
+    private void addCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCMousePressed
+        // TODO add your handling code here:
+         menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(ClickedColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Add Customer");
+    }//GEN-LAST:event_addCMousePressed
+
+    private void searchCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchCMousePressed
+        // TODO add your handling code here:
+        menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(ClickedColor);
+        customersM.setBackground(DefaultColor);
+        topMenu.setText("Search/ Update Customer");
+    }//GEN-LAST:event_searchCMousePressed
+
+    private void customersMMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customersMMousePressed
+        // TODO add your handling code here:
+        menuAdd.setBackground(DefaultColor);
+        changeG.setBackground(DefaultColor);
+        availableG.setBackground(DefaultColor);
+        rentG.setBackground(DefaultColor);
+        returnG.setBackground(DefaultColor);
+        addE.setBackground(DefaultColor);
+        searchE.setBackground(DefaultColor);
+        addC.setBackground(DefaultColor);
+        searchC.setBackground(DefaultColor);
+        customersM.setBackground(ClickedColor);
+        topMenu.setText("Customers");
+    }//GEN-LAST:event_customersMMousePressed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) throws ParseException {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        new Dashboard().setVisible(true);
+            }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel addC;
+    private javax.swing.JPanel addE;
+    private javax.swing.JPanel availableG;
+    private javax.swing.JPanel changeG;
+    private javax.swing.JPanel customersM;
+    private javax.swing.JLabel exitButton;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel menuAdd;
+    private javax.swing.JPanel rentG;
+    private javax.swing.JPanel returnG;
+    private javax.swing.JPanel searchC;
+    private javax.swing.JPanel searchE;
+    private javax.swing.JLabel textfieldadd;
+    private javax.swing.JLabel topMenu;
+    // End of variables declaration//GEN-END:variables
+}
