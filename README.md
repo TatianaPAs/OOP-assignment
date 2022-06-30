@@ -1,6 +1,5 @@
-OOP-assignment. 
-#Creating desktop app using Java language.
-#Application for guitar rental management - stock management, customer management, rental management modules.
+#desktop app using Java language. OOP assignment.
+Application for guitar rental management - stock management, customer management, rental management modules.
  
 ![image](https://user-images.githubusercontent.com/81549043/176592351-04cfaaf2-f27d-4715-9b24-af1a57ae473f.png)
 
